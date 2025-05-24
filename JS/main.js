@@ -52,10 +52,11 @@ async function main() {
 }
 
 // Example usage:
-main()
+/*main()
 	.then((data) => {
 		console.log("Artist data received in main():", data);
 	})
 	.catch((err) => {
 		console.error("Error calling main:", err);
 	});
+*/
