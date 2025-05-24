@@ -39,24 +39,19 @@ async function getArtistData(token, artistId) {
 	return await response.json();
 }
 
-// Your main function
 async function main() {
+	const resultEl = document.getElementById("result");
 	try {
+		resultEl.textContent = "Loading...";
 		const token = await getSpotifyAccessToken();
 		const artistData = await getArtistData(token, artistId);
-		return artistData; // Return the artist data here
+		resultEl.textContent = JSON.stringify(artistData, null, 2);
 	} catch (error) {
-		console.error("Error in main:", error);
-		throw error; // rethrow if you want to handle errors outside main
+		resultEl.textContent = "Error: " + error.message;
 	}
 }
 
-// Example usage:
-/*main()
-	.then((data) => {
-		console.log("Artist data received in main():", data);
-	})
-	.catch((err) => {
-		console.error("Error calling main:", err);
-	});
-*/
+// Add event listener to the button
+document.getElementById("fetchArtistBtn").addEventListener("click", () => {
+	main();
+});
